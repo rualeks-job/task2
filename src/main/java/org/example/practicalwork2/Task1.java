@@ -1,4 +1,4 @@
-package org.example.practicalWork2;
+package org.example.practicalwork2;
 
 import java.util.Random;
 import java.util.Scanner;

@@ -1,9 +1,10 @@
-package org.example.practicalWork2;
+package org.example.practicalwork2;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Task5 implements Task {
-    int startTime = 10;
-    boolean running = false;
-    Thread thread;
+    private int startTime = 10;
+    private final AtomicBoolean running = new AtomicBoolean(false);
 
     public static void main(String[] args) throws InterruptedException {
         Task5 task5 = new Task5();
@@ -14,33 +15,33 @@ public class Task5 implements Task {
 
     @Override
     public void start() {
-        if (running) {
-            System.out.println("Таймкер уже запущен");
+        if (running.get()) {
+            System.out.println("Таймер уже отработал");
             return;
         }
-        running = true;
-        thread = new Thread(() -> {
+        running.set(true);
+        Thread thread = new Thread(() -> {
             try {
-                while (startTime > 0 && running) {
+                while (startTime > 0 && running.get()) {
                     Thread.sleep(1000);
-                    System.out.println("До окончания таймера осталось: " + startTime-- + " секунд");
+                    System.out.println("До окончания таймера осталось: " + startTime + " секунд");
+                    startTime--;
                 }
-                if (running) {
+                if (running.get()) {
                     System.out.println("Время истекло");
-                }else {
+                } else {
                     System.out.println("Таймер остановлен");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            running = false;
         });
         thread.start();
     }
 
     @Override
     public void stop() {
-        running = false;
+        running.set(false);
     }
 
 }

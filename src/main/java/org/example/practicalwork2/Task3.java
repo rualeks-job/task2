@@ -1,17 +1,17 @@
-package org.example.practicalWork2;
+package org.example.practicalwork2;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Task3 {
     public static void main(String[] args) {
-        ArrayList<Employee> employeeArrayList = new ArrayList<>();
-        employeeArrayList.add(new Employee("Петров Игорь Юрьевич", 24, "Разработка", 340000.7));
-        employeeArrayList.add(new Employee("Комаров Никита Николаевич", 45, "Тестирование", 203734.5));
-        employeeArrayList.add(new Employee("Старк Тони Петрович", 36, "Разработка", 999999.9));
-        employeeArrayList.add(new Employee("Романов Наталья Сидоровна", 29, "Поддержка", 170745.3));
-        employeeArrayList.add(new Employee("Калугин Тор Одинов", 759, "Тестирпование", 260847.8));
+        List<Employee> employeeList = List.of(
+                new Employee("Петров Игорь Юрьевич", 24, "Разработка", 340000.7),
+                new Employee("Комаров Никита Николаевич", 45, "Тестирование", 203734.5),
+                new Employee("Старк Тони Петрович", 36, "Разработка", 999999.9),
+                new Employee("Романов Наталья Сидоровна", 29, "Поддержка", 170745.3),
+                new Employee("Калугин Тор Одинов", 759, "Тестирпование", 260847.8));
 
-        employeeArrayList.stream().filter(employee -> employee.age > 30).forEach(System.out::println);
+        employeeList.stream().filter(employee -> employee.age > 30).forEach(System.out::println);
     }
 
     public static class Employee {
